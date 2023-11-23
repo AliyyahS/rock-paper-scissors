@@ -1,8 +1,8 @@
-// Get computer to randomly select rock, paper or scissors
+// Function to get computer to randomly select rock, paper or scissors
 
-const randomChoice = Math.floor(Math.random() * 100);
+function getComputerChoice() {
+    let randomChoice = Math.floor(Math.random() * 100);
 
-function getComputerChoice(randomChoice) {
     if (randomChoice <= 33) {
         return "rock";
     } else if (randomChoice > 33 && randomChoice < 68) {
@@ -12,34 +12,83 @@ function getComputerChoice(randomChoice) {
     }
 }
 
-const computerSelection = getComputerChoice(randomChoice);
+// Function to get player to input rock, paper or scissors and make sure input is case insensitive
 
-// console.log(computerSelection);
+function getPlayerChoice () {
+    let input;
 
-// Get player to select rock, paper or scissors
+    do {
+        input = prompt("Let's play! Choose rock, paper or scissors.").toLowerCase();
+    } while (input != "rock" && input != "paper" && input != "scissors");
 
-const playerInput = prompt("Let's play! Choose rock, paper or scissors");
+    return input;
+}
 
-// Makes player's input case insensitive
+// Function to play a single round of rock, paper, scissors
 
-const playerSelection = playerInput.toLowerCase();
+function playRound() {
+    // Calls function to get player's selection
 
-// Play a single round of rock, paper, scissors
+    let playerSelection = getPlayerChoice();
 
-function playRound(playerSelection, computerSelection) {
-    const draw = "It's a draw! You both picked " + playerSelection;
-    const win = "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection;
-    const lose = "Oh no, you lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection;
+    // Calls function to get computer's selection
+
+    let computerSelection = getComputerChoice();
+
+    // Outcome message after a single round of rock, paper, scissors
+
+    const drawMessage = "It's a draw! You both picked " + playerSelection;
+    const winMessage = "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection;
+    const loseMessage = "Oh no, you lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection;
+
+    // Compares player's selection to computer's selection, prints the outcome message and returns the winner of the round
 
     if (playerSelection == computerSelection) {
-        return draw;
+        console.log(drawMessage);
+        return "draw";
     } else if ((playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors")) {
-        return win;
+        console.log(winMessage);
+        return "player";
     } else {
-        return lose;
+        console.log(loseMessage);
+        return "computer";
     }
 }
 
-// Prints the results of a round
+// Function to play 5 rounds of rock, paper, scissors and tracks the score
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+
+    // Variables to track score
+
+    let draw = 0;
+    let playerWin = 0;
+    let computerWin = 0;
+
+    // Calls function to play five rounds of game
+    
+    for (let i = 0; i < 5; i++) {
+
+        let roundWinner = playRound();
+
+        if (roundWinner == "draw") {
+            draw++;
+        } else if (roundWinner == "player") {
+            playerWin++;
+        } else {
+            computerWin++;
+        }
+    }
+
+    // Compares the final results of 5 games
+
+    if (playerWin == computerWin){
+        return "The final result: It's a draw! You both scored " + playerWin;
+    } else if (playerWin > computerWin) {
+        return "The final result: You win! You scored " + playerWin + " and the computer scored " + computerWin;
+    } else {
+        return "The final result: You lost! You scored " + playerWin + " and the computer scored " + computerWin;
+    }
+}
+
+console.log(game());
