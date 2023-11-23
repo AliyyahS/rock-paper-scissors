@@ -16,9 +16,9 @@ const computerSelection = getComputerChoice(randomChoice);
 
 // console.log(computerSelection);
 
-// Player inputs rock, paper or scissors
+// Get player to select rock, paper or scissors
 
-const playerInput = "rock";
+const playerInput = prompt("Let's play! Choose rock, paper or scissors");
 
 // Makes player's input case insensitive
 
