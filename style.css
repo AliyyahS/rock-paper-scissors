@@ -8,7 +8,17 @@ body {
     background-color: #DDE6ED;
 }
 
-button {
+h1 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 36px;
+}
+
+p {
+    font-size: 18px;
+}
+
+.button-group button {
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     font-size: 28px;
     height: 80px;
@@ -19,14 +29,8 @@ button {
     cursor: pointer;
 }
 
-h1 {
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 36px;
-}
-
-p {
-    font-size: 18px;
+.button-group button:hover {
+    background-color: #6C8286;
 }
 
 .header {
