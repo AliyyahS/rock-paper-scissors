@@ -75,6 +75,10 @@ p {
     justify-content: center;
 }
 
+.link {
+    color: #DDE6ED;
+}
+
 .dark,
 button {
     background-color: #092635;
