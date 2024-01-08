@@ -22,6 +22,8 @@ function playRound(playerSelection) {
     let computerSelection = getComputerSelection();
     let roundWinner = "";
 
+    printChoice(playerSelection, computerSelection);
+
     const drawMessage = "It's a draw! You both picked " + playerSelection;
     const winMessage = "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection;
     const loseMessage = "Oh no, you lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection;
@@ -76,6 +78,11 @@ function gameOver(finalWinner) {
     }
 }
 
+function printChoice(playerSelection, computerSelection) {
+    playerChoice.textContent = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+    computerChoice.textContent = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+}
+
 // UI
 
 const messageDiv = document.querySelector('.message');
@@ -96,6 +103,9 @@ const computerDiv = document.querySelector('.computer');
 const computerScoreboard = document.createElement('h3');
 computerDiv.appendChild(computerScoreboard);
 computerScoreboard.textContent = 0;
+
+const playerChoice = document.querySelector('.playerChoice');
+const computerChoice = document.querySelector('.computerChoice');
 
 const btn = document.querySelector('.button-group');
 const selection = btn.querySelectorAll('button');
